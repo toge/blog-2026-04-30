@@ -1,0 +1,7 @@
+{
+  "dependencies": [
+    "ctre",
+    "pcre2",
+    "re2"
+  ]
+}
