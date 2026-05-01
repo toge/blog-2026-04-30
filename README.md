@@ -25,7 +25,9 @@ curl 'https://booth.pm/ja/browse/%E6%8A%80%E8%A1%93%E6%9B%B8?sort=new'
 
 ### パターン1
 
-> <li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">([\s\S]*?)</a>[\s\S]*?<div class="item-card__shop-name">
+```regex
+<li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">([\s\S]*?)</a>[\s\S]*?<div class="item-card__shop-name">
+```
 
 CTREが圧倒的に遅いですが、RE2も地味に遅いです。
 
@@ -42,8 +44,9 @@ CTREが圧倒的に遅いですが、RE2も地味に遅いです。
 
 ### パターン2
 
-> <li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">([\s\S]*?)</a>
-
+```regex
+<li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">([\s\S]*?)</a>
+```
 
 | 正規表現ライブラリ | 実行時間 (ns) |
 | ------------------ | ------------: |
@@ -58,7 +61,9 @@ CTREが圧倒的に遅いですが、RE2も地味に遅いです。
 
 ### パターン3
 
-> <li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">
+```regex
+<li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a[\s\S]*?href="(https://booth\.pm/ja/items/[0-9]+)">
+```
 
 急にCTREの実行時間が増加します。
 RE2もstd::regexに負けはじめます。
@@ -76,8 +81,9 @@ RE2もstd::regexに負けはじめます。
 
 ### パターン4
 
-> <li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a
-
+```regex
+<li class="item-card[\s\S]*?data-product-id="([0-9]+)"[\s\S]*?data-product-price="([0-9]+)"[\s\S]*?<div class="item-card__title"><a
+```
 
 | 正規表現ライブラリ | 実行時間 (ns) |
 | ------------------ | ------------: |
@@ -92,7 +98,9 @@ RE2もstd::regexに負けはじめます。
 
 ### パターン5
 
-> <li class="item-card([\s\S]*?)data-product-id="([0-9]+)"[\s\S]*?data-product-price=
+```regex
+<li class="item-card([\s\S]*?)data-product-id="([0-9]+)"[\s\S]*?data-product-price=
+```
 
 ※プレースフォルダの数を合わせるために若干パターンを変更しています。
 
