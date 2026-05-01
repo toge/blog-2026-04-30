@@ -31,6 +31,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(ctre CONFIG REQUIRED)
 find_package(pcre2 CONFIG REQUIRED)
 find_package(re2 CONFIG REQUIRED)
+find_path(SRELL_INCLUDE_DIRS "srell.hpp")
 
 ## add executable
 add_executable(std_regex std_regex.cpp)
@@ -57,3 +58,8 @@ add_executable(re2 re2.cpp)
 target_link_libraries(re2 PRIVATE re2::re2)
 target_compile_features(re2 PRIVATE cxx_std_23)
 target_include_directories(re2 PRIVATE .)
+
+add_executable(srell srell.cpp)
+target_include_directories(srell PRIVATE ${SRELL_INCLUDE_DIRS})
+target_compile_features(srell PRIVATE cxx_std_23)
+target_include_directories(srell PRIVATE .)

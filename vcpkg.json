@@ -2,6 +2,7 @@
   "dependencies": [
     "ctre",
     "pcre2",
-    "re2"
+    "re2",
+    "srell"
   ]
 }
