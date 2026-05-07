@@ -31,12 +31,18 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(ctre CONFIG REQUIRED)
 find_package(pcre2 CONFIG REQUIRED)
 find_package(re2 CONFIG REQUIRED)
+find_package(Boost REQUIRED COMPONENTS regex)
 find_path(SRELL_INCLUDE_DIRS "srell.hpp")
 
 ## add executable
 add_executable(std_regex std_regex.cpp)
 target_compile_features(std_regex PRIVATE cxx_std_23)
 target_include_directories(std_regex PRIVATE .)
+
+add_executable(boost_regex boost_regex.cpp)
+target_link_libraries(boost_regex PRIVATE Boost::regex)
+target_compile_features(boost_regex PRIVATE cxx_std_23)
+target_include_directories(boost_regex PRIVATE .)
 
 add_executable(ctre ctre.cpp)
 target_link_libraries(ctre PRIVATE ctre::ctre)
