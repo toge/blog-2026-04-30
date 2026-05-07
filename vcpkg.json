@@ -3,6 +3,7 @@
     "ctre",
     "pcre2",
     "re2",
-    "srell"
+    "srell",
+    "pcrepp"
   ]
 }

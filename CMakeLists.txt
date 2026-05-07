@@ -32,6 +32,7 @@ find_package(ctre CONFIG REQUIRED)
 find_package(pcre2 CONFIG REQUIRED)
 find_package(re2 CONFIG REQUIRED)
 find_path(SRELL_INCLUDE_DIRS "srell.hpp")
+find_package(pcrepp CONFIG REQUIRED)
 
 ## add executable
 add_executable(std_regex std_regex.cpp)
@@ -63,3 +64,14 @@ add_executable(srell srell.cpp)
 target_include_directories(srell PRIVATE ${SRELL_INCLUDE_DIRS})
 target_compile_features(srell PRIVATE cxx_std_23)
 target_include_directories(srell PRIVATE .)
+
+add_executable(pcrepp pcrepp.cpp)
+target_link_libraries(pcrepp PRIVATE pcrepp::pcrepp)
+target_compile_features(pcrepp PRIVATE cxx_std_26)
+target_include_directories(pcrepp PRIVATE .)
+
+add_executable(pcrepp_jit pcrepp.cpp)
+target_compile_definitions(pcrepp_jit PRIVATE PCREPP_JIT)
+target_link_libraries(pcrepp_jit PRIVATE pcrepp::pcrepp)
+target_compile_features(pcrepp_jit PRIVATE cxx_std_26)
+target_include_directories(pcrepp_jit PRIVATE .)
