@@ -4,6 +4,9 @@
     "pcre2",
     "re2",
     "srell",
-    "boost-regex"
+    "boost-regex",
+    "oniguruma",
+    "icu",
+    "tre"
   ]
 }
